@@ -19,7 +19,7 @@ def response():
         ftp.storbinary('STOR '+name, f)
     ftp.close()
     query = dict(request.form).__str__()
-    res = query + " " + time.ctime()
+    res = query
     return jsonify({"response": res})
 
 
