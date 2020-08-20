@@ -17,9 +17,7 @@ def response():
     with open(name, 'rb') as f:
         ftp.storbinary('STOR '+name, f)
     ftp.close()
-    query = dict(request.form).__str__()
-    res = query
-    return jsonify({"response": res})
+    return 'Done'
 
 
 if __name__ == "__main__":
