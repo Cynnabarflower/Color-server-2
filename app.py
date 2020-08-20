@@ -7,9 +7,15 @@ app = Flask(__name__);
 
 @app.route("/bot", methods=["POST"])
 def response():
-    filename = "MyFile"
+    name = 'filename.txt'
+    f = open(name, 'w')
+    f.write('123')
+    f.close()
     ftp = ftplib.FTP("ftp.neuropsylab.com")
     ftp.login("gamedata@neuropsylab.com", "xGA)Wj636(LQ")
+    with open(name, 'rb') as f:
+        ftp.storbinary('STOR '+name, f)
+    ftp.close()
     query = dict(request.form).__str__()
     res = query + " " + time.ctime()
     return jsonify({"response": res})
