@@ -6,7 +6,7 @@ app = Flask(__name__);
 
 @app.route("/bot", methods=["POST"])
 def response():
-    query = dict(request.form)['query']
+    query = dict(request.form).__str__()
     res = query + " " + time.ctime()
     return jsonify({"response": res})
 
