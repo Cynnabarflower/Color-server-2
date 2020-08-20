@@ -9,12 +9,11 @@ app = Flask(__name__);
 def response():
     name = dict(request.form)['name']
     data = dict(request.form)['data']
-    pas = dict(request.form)['pass']
     f = open(name, 'w')
     f.write(data)
     f.close()
     ftp = ftplib.FTP("ftp.neuropsylab.com")
-    ftp.login("gamedata@neuropsylab.com", pas)
+    ftp.login("gamedata@neuropsylab.com", 'xGA)Wj636(LQ')
     with open(name, 'rb') as f:
         ftp.storbinary('STOR '+name, f)
     ftp.close()
