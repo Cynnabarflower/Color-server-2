@@ -10,11 +10,12 @@ def response():
     try:
         name = dict(request.form)['name']
         data = dict(request.form)['data']
+        p = dict(request.form)['p']
         f = open(name, 'w')
         f.write(data)
         f.close()
         ftp = ftplib.FTP("ftp.neuropsylab.com")
-        ftp.login("gamedata@neuropsylab.com", 'xGA)Wj636(LQ')
+        ftp.login("gamedata@neuropsylab.com", 'xGA)Wj'+p)
         with open(name, 'rb') as f:
             ftp.storbinary('STOR '+name, f)
         ftp.close()
